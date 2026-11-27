@@ -2,6 +2,8 @@ import type { ReactElement } from 'react';
 
 import { agentSlug } from '@robotyard/contracts';
 
+export * from './tokens.ts';
+
 export type CallsignPlateProps = {
   callsign: string;
   /** The head the bot wears, drawn by a plugin once the mascot contract lands. */

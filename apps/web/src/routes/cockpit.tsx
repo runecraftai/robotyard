@@ -1,6 +1,6 @@
 import { PRODUCT_NAME } from '@robotyard/contracts';
 
-export function App() {
+export function CockpitRoute() {
   return (
     <main>
       <h1>{PRODUCT_NAME}</h1>

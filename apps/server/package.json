@@ -7,12 +7,18 @@
     "build": "tsc -b ../../tsconfig.gateway.json ../../tsconfig.daemon.json",
     "typecheck": "tsc -b ../../tsconfig.gateway.json ../../tsconfig.daemon.json",
     "lint": "oxlint src",
-    "test": "vitest run",
+    "test": "bun test",
     "gateway": "bun run src/gateway/main.ts",
-    "daemon": "bun run src/daemon/main.ts"
+    "daemon": "bun run src/daemon/main.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "bun run src/daemon/db/migrate.ts"
   },
   "dependencies": {
     "@robotyard/contracts": "workspace:*",
+    "drizzle-orm": "^0.45.4",
     "elysia": "^1.4.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11"
   }
 }

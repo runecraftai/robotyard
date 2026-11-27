@@ -8,5 +8,6 @@ bun.lockb
 .env.*
 !.env.example
 coverage/
+.data/
 playwright-report/
 test-results/
