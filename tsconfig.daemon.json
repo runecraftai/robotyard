@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "outDir": "node_modules/.cache/daemon-types",
+    "rootDir": "."
+  },
+  "include": [
+    "apps/server/src/daemon/**/*.ts",
+    "packages/*/src/**/*.ts"
+  ]
+}

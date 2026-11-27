@@ -1,0 +1,52 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.4
+
+      - name: install
+        run: bun install --frozen-lockfile
+
+      - name: typecheck
+        run: bun run typecheck
+
+      - name: lint
+        run: bun run lint
+
+      - name: test
+        run: bun run test
+
+      - name: build
+        run: bun run build
+
+      - name: boundary
+        run: bun run boundary
+
+  # Sonda do plano: prova se node-pty carrega sob o Bun no Windows.
+  # Enquanto falhar, apenas o processo de terminal fica em Node no Windows.
+  windows-terminal-probe:
+    runs-on: windows-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.4
+
+      - name: probe a pseudo-terminal under Bun
+        shell: bash
+        run: |
+          bun add -d node-pty
+          bun -e "const pty = require('node-pty'); const p = pty.spawn(process.env.COMSPEC || 'cmd.exe', [], { cols: 80, rows: 24 }); let out = ''; p.onData((d) => { out += d; }); setTimeout(() => { console.log('pty bytes:', out.length); process.exit(out.length > 0 ? 0 : 1); }, 3000);"

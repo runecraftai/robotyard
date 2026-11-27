@@ -1,0 +1,18 @@
+{
+  "name": "@robotyard/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b ../../tsconfig.gateway.json ../../tsconfig.daemon.json",
+    "typecheck": "tsc -b ../../tsconfig.gateway.json ../../tsconfig.daemon.json",
+    "lint": "oxlint src",
+    "test": "vitest run",
+    "gateway": "bun run src/gateway/main.ts",
+    "daemon": "bun run src/daemon/main.ts"
+  },
+  "dependencies": {
+    "@robotyard/contracts": "workspace:*",
+    "elysia": "^1.4.0"
+  }
+}

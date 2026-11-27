@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "outDir": "node_modules/.cache/gateway-types",
+    "rootDir": "."
+  },
+  "include": [
+    "apps/server/src/gateway/**/*.ts",
+    "packages/*/src/**/*.ts"
+  ]
+}
