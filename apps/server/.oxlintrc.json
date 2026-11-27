@@ -1,0 +1,26 @@
+{
+  "overrides": [
+    {
+      "files": ["src/gateway/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "drizzle-orm",
+                "message": "the gateway must not import Drizzle; the database belongs to the daemon"
+              }
+            ],
+            "patterns": [
+              {
+                "group": ["**/daemon/**"],
+                "message": "the gateway must not import daemon code; that direction is the daemon's"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
